@@ -5,7 +5,7 @@ type UserDomainInterface interface {
 	GetPassword() string
 	GetName() string
 	GetAge() int8
-	EncryptPassword()
 	SetID(string2 string)
 	GetID() string
+	EncryptPassword()
 }

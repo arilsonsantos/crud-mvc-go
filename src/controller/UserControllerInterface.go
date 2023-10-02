@@ -1,11 +1,21 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/arilsonsantos/crud-mvc-go.git/src/service"
+	"github.com/gin-gonic/gin"
+)
 
 type UserControllerInterface interface {
 	CreateUser(c *gin.Context)
-	FindUserById(c *gin.Context)
-	FindUserByEmail(c *gin.Context)
-	UpdateUser(c *gin.Context)
-	DeleteUser(c *gin.Context)
+}
+
+type userControllerInterface struct {
+	userService service.UserServiceInterface
+}
+
+func NewUserControllerInterface(userService service.UserServiceInterface) UserControllerInterface {
+	return &userControllerInterface{
+		userService: userService,
+	}
+
 }

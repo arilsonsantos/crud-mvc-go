@@ -1,14 +1,19 @@
 package repository
 
 import (
+	"database/sql"
+	errApi "github.com/arilsonsantos/crud-mvc-go.git/src/config/error"
 	"github.com/arilsonsantos/crud-mvc-go.git/src/model/domain"
-	"google.golang.org/protobuf/types/known/apipb"
 )
 
 type UserRepositoryInterface interface {
-	Create(domainInterface domain.UserDomainInterface) (domain.UserDomainInterface, *apipb.Api)
+	Create(domainInterface domain.UserDomainInterface) (domain.UserDomainInterface, *errApi.ErrApi)
 }
 
 type userRepositoryInterface struct {
-	connection string
+	sql *sql.DB
+}
+
+func NewUserRepository(sql *sql.DB) UserRepositoryInterface {
+	return &userRepositoryInterface{sql}
 }
